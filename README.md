@@ -1,2 +1,2 @@
-# temperatures_distribution
+# temperature_distribution
 solving PDE using FEM
