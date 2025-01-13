@@ -116,9 +116,6 @@ T1 = np.linalg.solve(A1, b1)
 temperature_distribution1 = T1.reshape((grid_size, grid_size))
 print("Rozkład temperatury (°C):")
 print(temperature_distribution1)
-x = np.linspace(0, 16, grid_size)
-y = np.linspace(0, 16, grid_size)
-X, Y = np.meshgrid(x, y)
 
 plt.figure(figsize=(8, 6))
 contour = plt.contourf(X, Y, temperature_distribution1, cmap='hot', levels=20)
@@ -135,3 +132,19 @@ plt.title('Zmierzone temperatury:')
 plt.xlabel('X [cm]')
 plt.ylabel('Y [cm]')
 plt.show()
+
+
+import plotly.graph_objects as go
+
+
+
+fig = go.Figure(data=[go.Surface(z=q, x=X, y=Y, colorscale='Viridis')])
+fig.update_layout(
+    title='Rozkład q(x, y) w 3D',
+    scene=dict(
+        xaxis_title='X [cm]',
+        yaxis_title='Y [cm]',
+        zaxis_title='q(x, y) [W/cm³]',
+    ),
+)
+fig.show()
